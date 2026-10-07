@@ -9,6 +9,7 @@ _MODULE_PATHS = [
     Path(__file__).resolve().parents[1] / "__init__.py",
     Path(__file__).resolve().with_name("generation_metadata_file_wiring.py"),
     Path(__file__).resolve().with_name("results_display_wiring.py"),
+    Path(__file__).resolve().with_name("results_source_mix_wiring.py"),
     Path(__file__).resolve().with_name("training_dataset_builder_wiring.py"),
     Path(__file__).resolve().with_name("training_dataset_preprocess_wiring.py"),
     Path(__file__).resolve().with_name("training_run_wiring.py"),

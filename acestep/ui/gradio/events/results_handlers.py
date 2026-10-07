@@ -55,6 +55,13 @@ from acestep.ui.gradio.events.results.audio_transfer import (
     convert_result_audio_to_codes,
 )
 
+# --- Lego stem + source mix ---------------------------------------------
+from acestep.ui.gradio.events.results.source_mix import (
+    SOURCE_MIX_SLOTS,
+    create_source_mix_for_slot,
+    source_mix_visibility_updates,
+)
+
 # --- generation progress ------------------------------------------------
 from acestep.ui.gradio.events.results.generation_progress import (
     generate_with_progress,
@@ -101,6 +108,10 @@ __all__ = [
     "send_audio_to_remix",
     "send_audio_to_repaint",
     "convert_result_audio_to_codes",
+    # Lego stem + source mix
+    "SOURCE_MIX_SLOTS",
+    "create_source_mix_for_slot",
+    "source_mix_visibility_updates",
     # generation
     "generate_with_progress",
     "generate_with_batch_management",

@@ -5,6 +5,7 @@ Contains results display section component definitions
 import gradio as gr
 from acestep.ui.gradio.i18n import t
 from acestep.ui.gradio.help_content import create_help_button
+from acestep.ui.gradio.interfaces.result_source_mix import create_source_mix_controls
 
 
 def _create_audio_column(n, visible=True):
@@ -38,6 +39,7 @@ def _create_audio_column(n, visible=True):
                 t("results.save_btn"),
                 variant="primary", size="sm", scale=1
             )
+        source_mix = create_source_mix_controls(n)
         with gr.Accordion(t("results.details_accordion"), open=False, visible=True) as details_accordion:
             codes_display = gr.Textbox(
                 label=t("results.codes_label", n=n),
@@ -91,6 +93,7 @@ def _create_audio_column(n, visible=True):
         "lrc_btn": lrc_btn,
         "save_lrc_btn": save_lrc_btn,
         "lrc_download_file": lrc_download_file,
+        **source_mix,
     }
 
 
@@ -180,20 +183,9 @@ def create_results_section(dit_handler) -> dict:
         "generation_info": generation_info,
     }
     
+    # Every per-column component is exposed as "<key>_<slot>".
     for idx, col_data in enumerate(all_cols, start=1):
-        result[f"generated_audio_{idx}"] = col_data["generated_audio"]
-        result[f"audio_col_{idx}"] = col_data["audio_col"]
-        result[f"send_to_remix_btn_{idx}"] = col_data["send_to_remix_btn"]
-        result[f"send_to_repaint_btn_{idx}"] = col_data["send_to_repaint_btn"]
-        result[f"save_btn_{idx}"] = col_data["save_btn"]
-        result[f"score_btn_{idx}"] = col_data["score_btn"]
-        result[f"score_display_{idx}"] = col_data["score_display"]
-        result[f"codes_display_{idx}"] = col_data["codes_display"]
-        result[f"convert_to_codes_btn_{idx}"] = col_data["convert_to_codes_btn"]
-        result[f"lrc_btn_{idx}"] = col_data["lrc_btn"]
-        result[f"lrc_display_{idx}"] = col_data["lrc_display"]
-        result[f"save_lrc_btn_{idx}"] = col_data["save_lrc_btn"]
-        result[f"lrc_download_file_{idx}"] = col_data["lrc_download_file"]
-        result[f"details_accordion_{idx}"] = col_data["details_accordion"]
-    
+        for key, component in col_data.items():
+            result[f"{key}_{idx}"] = component
+
     return result

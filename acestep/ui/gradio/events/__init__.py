@@ -51,6 +51,7 @@ def setup_event_handlers(demo, dit_handler, llm_handler, dataset_handler, datase
         register_results_aux_handlers,
         register_results_restore_and_lrc_handlers,
         register_results_save_button_handlers,
+        register_results_source_mix_handlers,
         register_generation_service_handlers,
     )
 
@@ -91,6 +92,7 @@ def setup_event_handlers(demo, dit_handler, llm_handler, dataset_handler, datase
         wiring_context,
         mode_ui_outputs=mode_ui_outputs,
     )
+    register_results_source_mix_handlers(wiring_context)
     register_generation_run_handlers(wiring_context)
     register_generation_batch_navigation_handlers(wiring_context)
     register_results_restore_and_lrc_handlers(wiring_context)
